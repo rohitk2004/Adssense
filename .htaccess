@@ -1,0 +1,110 @@
+# Apache Configuration for ViralVerse Media
+# Enable URL Rewriting
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Force HTTPS
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+    # Remove www (optional - uncomment if you want non-www)
+    # RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+    # RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+    # Remove .php extension
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+    # Remove index.php from URL
+    RewriteCond %{THE_REQUEST} /index\.php [NC]
+    RewriteRule ^(.*)index\.php$ /$1 [R=301,L,NC]
+
+    # Redirect /articles/index.php to /articles/
+    RewriteCond %{THE_REQUEST} /articles/index\.php [NC]
+    RewriteRule ^articles/index\.php$ /articles/ [R=301,L,NC]
+
+    # Handle directory requests
+    DirectoryIndex index.php index.html
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header set X-Frame-Options "SAMEORIGIN"
+    
+    # Prevent MIME sniffing
+    Header set X-Content-Type-Options "nosniff"
+    
+    # XSS Protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Referrer Policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Content Security Policy (adjust as needed)
+    Header set Content-Security-Policy "default-src 'self' https:; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.streamlit.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; frame-src https://*.streamlit.app; img-src 'self' data: https:;"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    
+    # Default
+    ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# Disable directory browsing (Commented out as specific to server config)
+# Options -Indexes
+
+# Protect sensitive files
+<FilesMatch "^(config\.php|\.htaccess)$">
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
+
+# PHP Settings (Commented out - causes 500 error on CGI/FastCGI)
+# <IfModule mod_php7.c>
+#     php_value upload_max_filesize 10M
+#     php_value post_max_size 10M
+#     php_value memory_limit 128M
+#     php_flag display_errors Off
+#     php_flag log_errors On
+# </IfModule>
+
+# Error Documents (create these pages if needed)
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
