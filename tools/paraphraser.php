@@ -127,11 +127,15 @@ include '../includes/header.php';
         <div class="input-group">
             <label for="inputText">Original Text</label>
             <textarea id="inputText" placeholder="Paste your text here to paraphrase..."></textarea>
+            <div style="text-align: right; color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;"
+                id="inputCount">0 Words</div>
         </div>
 
         <div class="input-group">
             <label for="outputText">Paraphrased Output</label>
             <textarea id="outputText" readonly placeholder="Your rewritten text will appear here..."></textarea>
+            <div style="text-align: right; color: var(--text-muted); font-size: 0.8rem; margin-top: 0.5rem;">AI
+                Generated Output</div>
         </div>
 
         <div class="controls">
@@ -145,6 +149,96 @@ include '../includes/header.php';
                 <span>🗑️ Clear</span>
             </button>
         </div>
+    </div>
+</div>
+
+<!-- SEO Content Section -->
+<div class="container" style="max-width: 1000px; margin-top: 5rem; padding-bottom: 5rem;">
+    <style>
+        .content-section h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            margin-top: 3rem;
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+
+    <div class="content-section">
+        <h2>Paraphrasing Tool – AI Sentence Rephraser</h2>
+        <p>The paraphrasing tool by <?php echo SITE_NAME; ?> acts as a sentence rephraser and rewrites complete articles
+            for free. This web-based utility is powered by advanced AI algorithms that make it capable of rewriting
+            content by changing words into their synonyms and shuffling the sentence structure.</p>
+        <p>It's an ideal utility for creating unique and engaging content without putting manual effort. You can
+            paraphrase up to 2000 words in a single go with this free paraphrasing tool.</p>
+
+        <h3>How Does This Paraphrase Tool Work?</h3>
+        <p>The working of this paraphrasing tool consists of simple steps. You don't have to follow any intricate
+            procedure to use this facility. The steps below can help you paraphrase online with this sentence rephraser:
+        </p>
+        <ul>
+            <li>Enter text in the provided box or upload a file.</li>
+            <li>Click on the "Paraphrase Now" button.</li>
+            <li>The tool will instantly analyze and rewrite your content.</li>
+            <li>Copy the results or download the paraphrased text file.</li>
+        </ul>
+
+        <h3>Features of Our Paraphrasing Tool Online</h3>
+        <p>The paraphrasing tool offered on this platform comes with top-notch features that make it stand out from the
+            competition. Its prominent features include the following:</p>
+
+        <h3>AI-Powered Rephrasing</h3>
+        <p>This sentence rephraser is based on AI (Artificial Intelligence) that helps it rewrite content smartly like
+            humans. Its backend algorithms produce high-quality content that preserves the original meaning of the text.
+        </p>
+
+        <h3>Plagiarism-Free Content</h3>
+        <p>Plagiarism is a nuisance for writers, as it destroys their hard work and reputation. Our paraphrasing tool
+            resolves this issue by providing plagiarism-free content. It replaces ample words with synonyms to eliminate
+            duplication.</p>
+
+        <h3>Better Readability</h3>
+        <p>While paraphrasing content manually, maintaining readability is a tough chore. However, this online utility
+            ensures your content becomes easy to read and digest for the audience. It improves text flow and eliminates
+            complexity.</p>
+
+        <h3>Multiple Modes (Coming Soon)</h3>
+        <p>We are working on introducing diverse modes for paraphrasing, such as Standard, Fluency, Formal, and
+            Creative. Each mode will cater to specific writing needs, ensuring the tone matches your requirements
+            perfectly.</p>
+
+        <h3>Who Can Use This Paraphrasing Tool?</h3>
+        <p>This utility is not limited to a specific niche; it provides assistance to people working in various domains.
+            The top users of this tool include:</p>
+        <ul>
+            <li><strong>Students:</strong> For rewriting assignments and research papers to avoid plagiarism.</li>
+            <li><strong>Bloggers:</strong> To update old content or generate fresh angles on trending topics.</li>
+            <li><strong>Marketers:</strong> For creating multiple variations of ad copy and email newsletters.</li>
+            <li><strong>Freelancers:</strong> To speed up content production and meet tight deadlines.</li>
+        </ul>
     </div>
 </div>
 
@@ -229,6 +323,12 @@ include '../includes/header.php';
             alert('Please enter some text first.');
             return;
         }
+
+        // Add word counting
+        document.getElementById('inputText').addEventListener('input', function() {
+            const count = this.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+            document.getElementById('inputCount').innerText = count + " Words";
+        });
 
         output.value = "Analyzing and rewriting...";
 
