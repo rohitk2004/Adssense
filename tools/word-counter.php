@@ -93,10 +93,18 @@ include '../includes/header.php';
 
     .controls {
         display: flex;
+        flex-wrap: wrap;
         gap: 1rem;
         margin-top: 1.5rem;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         padding-top: 1.5rem;
+        align-items: center;
+    }
+    
+    .btn-group {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
     }
 
     .btn-action {
@@ -169,8 +177,17 @@ include '../includes/header.php';
     </div>
 
     <div class="controls">
-        <button class="btn-action" onclick="copyText()">Copy Text</button>
-        <button class="btn-action btn-clear" onclick="clearText()">Clear All</button>
+        <div class="btn-group">
+            <button class="btn-action" onclick="convertCase('upper')">UPPER CASE</button>
+            <button class="btn-action" onclick="convertCase('lower')">lower case</button>
+            <button class="btn-action" onclick="convertCase('title')">Title Case</button>
+            <button class="btn-action" onclick="convertCase('sentence')">Sentence case</button>
+        </div>
+        <div class="btn-group" style="margin-left: auto;">
+             <button class="btn-action" id="spellCheckBtn" onclick="toggleSpellCheck()">Enable Spell Check</button>
+            <button class="btn-action" onclick="copyText()">Copy Text</button>
+            <button class="btn-action btn-clear" onclick="clearText()">Clear All</button>
+        </div>
     </div>
 </div>
 
@@ -182,52 +199,93 @@ include '../includes/header.php';
     const paraCountDisplay = document.getElementById('paraCount');
     const readingTimeDisplay = document.getElementById('readingTime');
     const speakingTimeDisplay = document.getElementById('speakingTime');
+    const spellCheckBtn = document.getElementById('spellCheckBtn');
 
     textInput.addEventListener('input', updateStats);
 
     function updateStats() {
         const text = textInput.value;
-
+        
         // Character Count
         charCountDisplay.textContent = text.length;
 
         // Word Count
-        // Match non-whitespace sequences
         const words = text.trim() === '' ? [] : text.trim().split(/\s+/);
         const wordCount = words.length;
         wordCountDisplay.textContent = wordCount;
 
         // Sentence Count
-        // Split by ., !, ? followed by space or end of string
-        // Simple approximation
         const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
         sentenceCountDisplay.textContent = sentences.length;
 
         // Paragraph Count
-        // Split by 2 or more newlines
-        const paragraphs = text.split(/\n\s*\n/).filter(p => p.trim().length > 0);
-        // If text is empty, 0 paragraphs, else at least 1 if not empty
-        paraCountDisplay.textContent = (text.trim() === '') ? 0 : (text.split(/\n+/).filter(line => line.trim().length > 0).length);
+        // Simplistic paragraph detection
+        const nonEmptyLines = text.split(/\n/).filter(line => line.trim().length > 0);
+        paraCountDisplay.textContent = nonEmptyLines.length;
 
         // Reading Time (Average 200 wpm)
         const readTime = Math.ceil(wordCount / 200);
         readingTimeDisplay.textContent = readTime + (readTime === 1 ? ' min' : ' mins');
-
+        
         // Speaking Time (Average 130 wpm)
         const speakTime = Math.ceil(wordCount / 130);
         speakingTimeDisplay.textContent = speakTime + (speakTime === 1 ? ' min' : ' mins');
     }
 
+    function convertCase(type) {
+        let text = textInput.value;
+        if (!text) return;
+
+        switch(type) {
+            case 'upper':
+                text = text.toUpperCase();
+                break;
+            case 'lower':
+                text = text.toLowerCase();
+                break;
+            case 'title':
+                text = text.toLowerCase().split(' ').map(function(word) {
+                    return (word.charAt(0).toUpperCase() + word.slice(1));
+                }).join(' ');
+                break;
+            case 'sentence':
+                text = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, function(c) {
+                    return c.toUpperCase();
+                });
+                break;
+        }
+        textInput.value = text;
+        updateStats();
+    }
+
+    function toggleSpellCheck() {
+        const isEnabled = textInput.getAttribute('spellcheck') === 'true';
+        if (isEnabled) {
+            textInput.setAttribute('spellcheck', 'false');
+            spellCheckBtn.textContent = 'Enable Spell Check';
+            spellCheckBtn.style.color = 'var(--text-secondary)';
+            spellCheckBtn.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+        } else {
+            textInput.setAttribute('spellcheck', 'true');
+            spellCheckBtn.textContent = 'Disable Spell Check';
+            spellCheckBtn.style.color = 'var(--primary)';
+            spellCheckBtn.style.borderColor = 'var(--primary)';
+        }
+        textInput.focus();
+    }
+
     function copyText() {
         textInput.select();
         document.execCommand('copy');
-        // Flash effect or toast could go here
+        alert("Text copied to clipboard!"); 
     }
 
     function clearText() {
-        textInput.value = '';
-        updateStats();
-        textInput.focus();
+        if(confirm('Are you sure you want to clear all text?')) {
+            textInput.value = '';
+            updateStats();
+            textInput.focus();
+        }
     }
 </script>
 
