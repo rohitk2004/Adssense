@@ -156,6 +156,14 @@ include '../includes/header.php';
             <p>Count words, characters, sentences, and paragraphs in real-time. Analyze reading and speaking time.</p>
             <a href="word-counter.php" class="btn-tool">Launch Tool</a>
         </div>
+
+        <!-- Document Converter Tool -->
+        <div class="tool-card">
+            <div class="tool-icon">📄</div>
+            <h3>PDF & Word Converter</h3>
+            <p>Convert PDF to Word and Word to PDF instantly in your browser. Secure, fast, and 100% free.</p>
+            <a href="pdf-converter.php" class="btn-tool">Launch Tool</a>
+        </div>
     </div>
 </div>
 
