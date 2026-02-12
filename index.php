@@ -296,27 +296,34 @@ include 'includes/header.php';
 
     .custom-cursor {
         position: fixed;
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
-        background: rgba(51, 153, 255, 0.8);
+        background: linear-gradient(135deg, #3399ff, #00d4ff);
         pointer-events: none;
-        z-index: 9999;
-        mix-blend-mode: screen;
+        z-index: 99999;
         transition: transform 0.2s ease, opacity 0.2s ease;
-        box-shadow: 0 0 20px rgba(51, 153, 255, 0.8), 0 0 40px rgba(51, 153, 255, 0.4);
+        box-shadow:
+            0 0 30px rgba(51, 153, 255, 1),
+            0 0 60px rgba(51, 153, 255, 0.8),
+            0 0 80px rgba(51, 153, 255, 0.6);
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        opacity: 0.95;
     }
 
     .custom-cursor-outer {
         position: fixed;
-        width: 40px;
-        height: 40px;
-        border: 2px solid rgba(138, 80, 255, 0.5);
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(138, 80, 255, 0.8);
         border-radius: 50%;
         pointer-events: none;
-        z-index: 9998;
+        z-index: 99998;
         transition: transform 0.15s ease;
         animation: cursorPulse 2s ease-in-out infinite;
+        box-shadow:
+            0 0 20px rgba(138, 80, 255, 0.6),
+            inset 0 0 20px rgba(138, 80, 255, 0.3);
     }
 
     @keyframes cursorPulse {
@@ -328,35 +335,40 @@ include 'includes/header.php';
         }
 
         50% {
-            transform: scale(1.2);
-            opacity: 0.8;
+            transform: scale(1.15);
+            opacity: 0.9;
         }
     }
 
     .custom-cursor.clicked {
-        transform: scale(0.8);
+        transform: scale(0.7);
+        background: linear-gradient(135deg, #8a50ff, #ff00ff);
     }
 
     .custom-cursor-outer.hover {
-        transform: scale(1.5);
-        border-color: rgba(51, 153, 255, 0.8);
+        transform: scale(1.6);
+        border-color: rgba(0, 255, 163, 1);
+        box-shadow:
+            0 0 30px rgba(0, 255, 163, 0.8),
+            inset 0 0 20px rgba(0, 255, 163, 0.3);
     }
 
     /* Cursor Trail */
     .cursor-trail {
         position: fixed;
-        width: 6px;
-        height: 6px;
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
-        background: linear-gradient(135deg, rgba(51, 153, 255, 0.6), rgba(138, 80, 255, 0.6));
+        background: radial-gradient(circle, rgba(51, 153, 255, 0.9), rgba(138, 80, 255, 0.7));
         pointer-events: none;
-        z-index: 9997;
-        animation: trailFade 0.8s ease-out forwards;
+        z-index: 99997;
+        animation: trailFade 1s ease-out forwards;
+        box-shadow: 0 0 15px rgba(51, 153, 255, 0.8);
     }
 
     @keyframes trailFade {
         to {
-            transform: scale(2);
+            transform: scale(3);
             opacity: 0;
         }
     }
@@ -430,17 +442,17 @@ include 'includes/header.php';
 
         // Smooth cursor animation
         function animateCursor() {
-            // Inner cursor follows closely
+            // Inner cursor follows closely (30px size, so -15px offset)
             cursorX += (mouseX - cursorX) * 0.2;
             cursorY += (mouseY - cursorY) * 0.2;
-            cursor.style.left = cursorX - 10 + 'px';
-            cursor.style.top = cursorY - 10 + 'px';
+            cursor.style.left = cursorX - 15 + 'px';
+            cursor.style.top = cursorY - 15 + 'px';
 
-            // Outer ring follows with delay
+            // Outer ring follows with delay (50px size, so -25px offset)
             outerX += (mouseX - outerX) * 0.1;
             outerY += (mouseY - outerY) * 0.1;
-            cursorOuter.style.left = outerX - 20 + 'px';
-            cursorOuter.style.top = outerY - 20 + 'px';
+            cursorOuter.style.left = outerX - 25 + 'px';
+            cursorOuter.style.top = outerY - 25 + 'px';
 
             requestAnimationFrame(animateCursor);
         }
