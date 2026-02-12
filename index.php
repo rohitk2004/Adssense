@@ -9,21 +9,53 @@ include 'includes/header.php';
 
 <style>
     /* Homepage Specific Styles */
+    /* 3D Floating Animation */
+    @keyframes float {
+        0% {
+            transform: translateY(0px) rotate(0deg);
+        }
+
+        50% {
+            transform: translateY(-20px) rotate(2deg);
+        }
+
+        100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+    }
+
+    .floating-element {
+        animation: float 6s ease-in-out infinite;
+        position: absolute;
+        z-index: 1;
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
     .hero-section {
-        padding: 8rem 0 6rem;
+        padding: 10rem 0 8rem;
         text-align: center;
         position: relative;
         overflow: hidden;
-        /* background provided by Vanta.js */
+        perspective: 1000px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 10;
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
     }
 
     .hero-section h1 {
-        font-size: clamp(3rem, 6vw, 5rem);
+        font-size: clamp(3.5rem, 8vw, 6rem);
         background: var(--gradient-primary);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 1.5rem;
+        line-height: 1.1;
+        text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .hero-section .subtitle {
