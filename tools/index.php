@@ -140,6 +140,14 @@ include '../includes/header.php';
                 options.</p>
             <a href="content-replacer.php" class="btn-tool">Launch Tool</a>
         </div>
+
+        <!-- Sitemap Generator Tool -->
+        <div class="tool-card">
+            <div class="tool-icon">🗺️</div>
+            <h3>Sitemap Generator</h3>
+            <p>Crawl your website to create an XML sitemap instantly. Improve your Google indexing speed.</p>
+            <a href="sitemap-generator.php" class="btn-tool">Launch Tool</a>
+        </div>
     </div>
 </div>
 
