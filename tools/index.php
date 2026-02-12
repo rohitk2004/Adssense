@@ -148,6 +148,14 @@ include '../includes/header.php';
             <p>Crawl your website to create an XML sitemap instantly. Improve your Google indexing speed.</p>
             <a href="sitemap-generator.php" class="btn-tool">Launch Tool</a>
         </div>
+
+        <!-- Word Counter Tool -->
+        <div class="tool-card">
+            <div class="tool-icon">📝</div>
+            <h3>Word Counter</h3>
+            <p>Count words, characters, sentences, and paragraphs in real-time. Analyze reading and speaking time.</p>
+            <a href="word-counter.php" class="btn-tool">Launch Tool</a>
+        </div>
     </div>
 </div>
 
