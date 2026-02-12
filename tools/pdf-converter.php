@@ -211,6 +211,84 @@ include '../includes/header.php';
     </div>
 </div>
 
+<!-- SEO Content Section -->
+<div class="container" style="max-width: 1000px; margin-top: 5rem; padding-bottom: 5rem;">
+    <style>
+        .content-section h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            margin-top: 3rem;
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .content-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section ul {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            padding-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+
+    <div class="content-section">
+        <h2>Free PDF to Word & Word to PDF Converter</h2>
+        <p>The PDF Converter by <?php echo SITE_NAME; ?> is an all-in-one document transformation tool. Whether you need
+            to edit a PDF document or turn a Word file into a secure, shareable format, our tool handles it instantly in
+            your browser.</p>
+
+        <h3>Word to PDF Converter</h3>
+        <p>Turning a Microsoft Word document into a PDF has never been easier. This tool converts your DOCX files into
+            high-quality PDF documents while preserving the original formatting, including fonts, images, and layout.
+        </p>
+        <ul>
+            <li><strong>Universal Compatibility:</strong> PDFs look the same on any device or operating system.</li>
+            <li><strong>Security:</strong> PDFs are harder to edit, making them ideal for sending final versions of
+                contracts, resumes, and reports.</li>
+            <li><strong>Compact Size:</strong> PDFs often compress file sizes for easier sharing via email.</li>
+        </ul>
+
+        <h3>PDF to Word Converter</h3>
+        <p>Need to edit a read-only PDF? Our PDF to Word tool extracts text and rebuilds the document structure into an
+            editable Word file (.doc). This is perfect for when you've lost the original source file or need to make
+            quick updates to a PDF form.</p>
+        <ul>
+            <li><strong>Easy Editing:</strong> Modify text, tables, and lists easily within Microsoft Word or Google
+                Docs.</li>
+            <li><strong>Fast Extraction:</strong> Quickly pull text from large reports or e-books without retyping
+                everything manually.</li>
+        </ul>
+
+        <h3>Secure & Private Conversion</h3>
+        <p>Unlike other online converters that upload your files to a server, this tool processes your documents
+            <strong>100% locally in your browser</strong>. This means your sensitive data never leaves your device,
+            guaranteeing total privacy and security.</p>
+
+        <h3>How to Convert Files?</h3>
+        <ol style="color: var(--text-secondary); line-height: 1.8; margin-left: 1.5rem; margin-bottom: 1.5rem;">
+            <li>Select the conversion mode from the tabs above (Word to PDF or PDF to Word).</li>
+            <li>Click the upload area or drag and drop your file.</li>
+            <li>Wait for the tool to process and preview the document.</li>
+            <li>Click the "Convert & Download" button to save your new file.</li>
+        </ol>
+    </div>
+</div>
+
 <script>
     let currentMode = 'word-to-pdf';
     let fileContentHtml = ''; // Stores extracted HTML
