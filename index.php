@@ -381,6 +381,208 @@ include 'includes/header.php';
     </div>
 </section>
 
+<!-- Featured Tools Section -->
+<section
+    style="padding: 6rem 0; background: linear-gradient(135deg, rgba(10, 10, 20, 0.9) 0%, rgba(20, 20, 35, 0.8) 100%);">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 4rem;">
+            <h2
+                style="font-size: 3rem; margin-bottom: 1rem; background: var(--gradient-primary); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
+                Our Tools Arsenal
+            </h2>
+            <p style="color: var(--text-secondary); font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+                Everything you need to dominate search rankings and streamline content creation
+            </p>
+        </div>
+
+        <style>
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .tool-showcase-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+            }
+
+            .tool-box {
+                background: linear-gradient(135deg, rgba(30, 30, 45, 0.6) 0%, rgba(20, 20, 30, 0.8) 100%);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                border-radius: 20px;
+                padding: 2rem;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+                animation: slideInUp 0.6s ease-out backwards;
+                cursor: pointer;
+            }
+
+            .tool-box:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+
+            .tool-box:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .tool-box:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+
+            .tool-box:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+
+            .tool-box:nth-child(5) {
+                animation-delay: 0.5s;
+            }
+
+            .tool-box:nth-child(6) {
+                animation-delay: 0.6s;
+            }
+
+            .tool-box:nth-child(7) {
+                animation-delay: 0.7s;
+            }
+
+            .tool-box:nth-child(8) {
+                animation-delay: 0.8s;
+            }
+
+            .tool-box::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background: radial-gradient(circle, rgba(51, 153, 255, 0.2), transparent);
+                transition: width 0.6s, height 0.6s, top 0.6s, left 0.6s;
+            }
+
+            .tool-box:hover::before {
+                width: 300px;
+                height: 300px;
+                top: calc(50% - 150px);
+                left: calc(50% - 150px);
+            }
+
+            .tool-box:hover {
+                transform: translateY(-10px) scale(1.03);
+                border-color: rgba(51, 153, 255, 0.4);
+                box-shadow: 0 20px 60px rgba(51, 153, 255, 0.3), 0 0 40px rgba(138, 80, 255, 0.2);
+            }
+
+            .tool-box-icon {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+                display: block;
+                filter: drop-shadow(0 5px 15px rgba(51, 153, 255, 0.5));
+            }
+
+            .tool-box h4 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+                color: white;
+                position: relative;
+                z-index: 1;
+            }
+
+            .tool-box p {
+                color: var(--text-secondary);
+                font-size: 0.95rem;
+                line-height: 1.6;
+                position: relative;
+                z-index: 1;
+            }
+
+            .tool-badge {
+                display: inline-block;
+                padding: 4px 12px;
+                background: rgba(0, 255, 163, 0.15);
+                color: var(--success);
+                border-radius: 20px;
+                font-size: 0.75rem;
+                font-weight: 600;
+                margin-top: 1rem;
+                border: 1px solid rgba(0, 255, 163, 0.3);
+            }
+        </style>
+
+        <div class="tool-showcase-grid">
+            <a href="/tools/paraphraser.php" style="text-decoration: none;" class="tool-box">
+                <span class="tool-box-icon">✍️</span>
+                <h4>AI Paraphraser</h4>
+                <p>Rewrite content intelligently with context-aware AI</p>
+                <span class="tool-badge">Popular</span>
+            </a>
+
+            <a href="/tools/backlink-checker.php" style="text-decoration: none;" class="tool-box">
+                <span class="tool-box-icon">🔗</span>
+                <h4>Backlink Checker</h4>
+                <p>Analyze domain authority and backlink profile</p>
+                <span class="tool-badge">SEO Essential</span>
+            </a>
+
+            <a href="/tools/sitemap-generator.php" style="text-decoration: none;" class="tool-box">
+                <span class="tool-box-icon">🗺️</span>
+                <h4>Sitemap Generator</h4>
+                <p>Create XML sitemaps for faster indexing</p>
+                <span class="tool-badge">Free</span>
+            </a>
+
+            <a href="/tools/word-counter.php" style="text-decoration: none;" class="tool-box">
+                <span class="tool-box-icon">📝</span>
+                <h4>Word Counter</h4>
+                <p>Count words, characters with reading time analysis</p>
+                <span class="tool-badge">Free</span>
+            </a>
+
+            <a href="/tools/pdf-converter.php" style="text-decoration: none;" class="tool-box">
+                <span class="tool-box-icon">📄</span>
+                <h4>PDF Converter</h4>
+                <p>Convert between PDF and Word formats securely</p>
+                <span class="tool-badge">Privacy First</span>
+            </a>
+
+            <a href="/tools/text-to-html.php" style="text-decoration: none;" class="tool-box">
+                <span class="tool-box-icon">🔧</span>
+                <h4>Text to HTML</h4>
+                <p>Transform plain text into formatted HTML code</p>
+                <span class="tool-badge">Free</span>
+            </a>
+
+            <a href="/tools/content-replacer.php" style="text-decoration: none;" class="tool-box">
+                <span class="tool-box-icon">🔄</span>
+                <h4>Content Replacer</h4>
+                <p>Find and replace text across large content blocks</p>
+                <span class="tool-badge">Free</span>
+            </a>
+
+            <a href="/tools/bookmarking-tool.php" style="text-decoration: none;" class="tool-box">
+                <span class="tool-box-icon">🚀</span>
+                <h4>Social Bookmarking</h4>
+                <p>Automate URL submissions for rapid indexing</p>
+                <span class="tool-badge">Pro SEO</span>
+            </a>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem;">
+            <a href="/tools/" class="btn-cta">View All Tools</a>
+        </div>
+    </div>
+</section>
+
 <section style="padding-bottom: 6rem;">
     <div class="container">
         <div class="stats-section">
@@ -393,7 +595,7 @@ include 'includes/header.php';
                 <p>Automated Uptime</p>
             </div>
             <div class="stat-item">
-                <h4>3+</h4>
+                <h4>8+</h4>
                 <p>Advanced Tools</p>
             </div>
         </div>
