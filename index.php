@@ -1,4 +1,5 @@
 <?php
+include 'includes/config.php';
 $pageInfo = [
     'title' => SITE_NAME . ' - ' . SITE_TAGLINE,
     'description' => SITE_DESCRIPTION

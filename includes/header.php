@@ -1,4 +1,4 @@
-<?php require_once 'config.php'; ?>
+<?php require_once __DIR__ . '/config.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,6 +51,7 @@
                     <li><a href="/">Home</a></li>
                     <li><a href="/#about">About</a></li>
                     <li><a href="/articles/">Articles</a></li>
+                    <li><a href="/tools/">Tools</a></li>
                     <li><a href="/legal/contact.php">Contact</a></li>
                 </ul>
             </nav>

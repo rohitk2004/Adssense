@@ -1,4 +1,5 @@
 <?php
+include '../includes/config.php';
 $pageInfo = [
     'title' => 'Terms of Service - ' . SITE_NAME,
     'description' => 'Terms of Service for using ' . SITE_NAME . '.'

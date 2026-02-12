@@ -1,4 +1,5 @@
 <?php
+include '../includes/config.php';
 $pageInfo = [
     'title' => 'SEO Knowledge Hub - ' . SITE_NAME,
     'description' => 'Expert guides and articles on SEO, social bookmarking, and search engine ranking strategies for 2026.'

@@ -1,4 +1,5 @@
 <?php
+include '../includes/config.php';
 $pageInfo = [
     'title' => 'Privacy Policy - ' . SITE_NAME,
     'description' => 'Privacy Policy for ' . SITE_NAME . '. Learn how we handle your data.'

@@ -3,6 +3,7 @@ $message_sent = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message_sent = true;
 }
+include '../includes/config.php';
 $pageInfo = [
     'title' => 'Contact Us - ' . SITE_NAME,
     'description' => 'Get in touch with the ' . SITE_NAME . ' team.'
