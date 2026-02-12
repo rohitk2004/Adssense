@@ -164,6 +164,14 @@ include '../includes/header.php';
             <p>Convert PDF to Word and Word to PDF instantly in your browser. Secure, fast, and 100% free.</p>
             <a href="pdf-converter.php" class="btn-tool">Launch Tool</a>
         </div>
+
+        <!-- Backlink Checker Tool -->
+        <div class="tool-card">
+            <div class="tool-icon">🔗</div>
+            <h3>Backlink Checker</h3>
+            <p>Analyze your domain's backlink profile, authority score, and referring domains instantly.</p>
+            <a href="backlink-checker.php" class="btn-tool">Launch Tool</a>
+        </div>
     </div>
 </div>
 
