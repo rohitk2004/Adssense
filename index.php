@@ -288,6 +288,78 @@ include 'includes/header.php';
             padding: 4rem 0;
         }
     }
+
+    /* Custom Cursor Effect */
+    * {
+        cursor: none !important;
+    }
+
+    .custom-cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: rgba(51, 153, 255, 0.8);
+        pointer-events: none;
+        z-index: 9999;
+        mix-blend-mode: screen;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        box-shadow: 0 0 20px rgba(51, 153, 255, 0.8), 0 0 40px rgba(51, 153, 255, 0.4);
+    }
+
+    .custom-cursor-outer {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(138, 80, 255, 0.5);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transition: transform 0.15s ease;
+        animation: cursorPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes cursorPulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        50% {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+    }
+
+    .custom-cursor.clicked {
+        transform: scale(0.8);
+    }
+
+    .custom-cursor-outer.hover {
+        transform: scale(1.5);
+        border-color: rgba(51, 153, 255, 0.8);
+    }
+
+    /* Cursor Trail */
+    .cursor-trail {
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(51, 153, 255, 0.6), rgba(138, 80, 255, 0.6));
+        pointer-events: none;
+        z-index: 9997;
+        animation: trailFade 0.8s ease-out forwards;
+    }
+
+    @keyframes trailFade {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
 </style>
 
 <section class="hero-section" id="vanta-hero">
@@ -324,6 +396,77 @@ include 'includes/header.php';
             backgroundColor: 0x0b0f19,
             size: 1.2
         })
+
+        // Custom Cursor Implementation
+        const cursor = document.createElement('div');
+        cursor.classList.add('custom-cursor');
+        document.body.appendChild(cursor);
+
+        const cursorOuter = document.createElement('div');
+        cursorOuter.classList.add('custom-cursor-outer');
+        document.body.appendChild(cursorOuter);
+
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let outerX = 0, outerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Create trailing particles
+            if (Math.random() > 0.8) {
+                const trail = document.createElement('div');
+                trail.classList.add('cursor-trail');
+                trail.style.left = e.clientX + 'px';
+                trail.style.top = e.clientY + 'px';
+                document.body.appendChild(trail);
+
+                setTimeout(() => {
+                    trail.remove();
+                }, 800);
+            }
+        });
+
+        // Smooth cursor animation
+        function animateCursor() {
+            // Inner cursor follows closely
+            cursorX += (mouseX - cursorX) * 0.2;
+            cursorY += (mouseY - cursorY) * 0.2;
+            cursor.style.left = cursorX - 10 + 'px';
+            cursor.style.top = cursorY - 10 + 'px';
+
+            // Outer ring follows with delay
+            outerX += (mouseX - outerX) * 0.1;
+            outerY += (mouseY - outerY) * 0.1;
+            cursorOuter.style.left = outerX - 20 + 'px';
+            cursorOuter.style.top = outerY - 20 + 'px';
+
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Click effect
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('clicked');
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('clicked');
+        });
+
+        // Hover effect on interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .btn-cta, .btn-link, .tool-box');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOuter.classList.add('hover');
+                cursor.style.transform = 'scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOuter.classList.remove('hover');
+                cursor.style.transform = 'scale(1)';
+            });
+        });
     });
 </script>
 
