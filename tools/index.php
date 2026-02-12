@@ -102,11 +102,19 @@ include '../includes/header.php';
 
 <div class="container">
     <div class="tools-hero">
-        <h1>Free SEO & Content Tools</h1>
+        <h1>Free Advance SEO & Content Tools</h1>
         <p class="subtitle">Boost your productivity with our suite of free online tools.</p>
     </div>
 
     <div class="tools-grid">
+        <!-- Social Bookmarking Tool -->
+        <div class="tool-card">
+            <div class="tool-icon">🚀</div>
+            <h3>Social Bookmarking</h3>
+            <p>Automate your SEO workflow. Submit URLs to top bookmarking sites instantly to boost search rankings.</p>
+            <a href="bookmarking-tool.php" class="btn-tool">Launch Tool</a>
+        </div>
+
         <!-- Paraphraser Tool -->
         <div class="tool-card">
             <div class="tool-icon">✍️</div>

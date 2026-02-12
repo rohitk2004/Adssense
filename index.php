@@ -7,21 +7,15 @@ $pageInfo = [
 include 'includes/header.php';
 ?>
 
-<section class="tool-section">
+<section class="hero-section" style="padding: 6rem 0; text-align: center;">
     <div class="container">
-        <h1>Automated Social Bookmarking Tool</h1>
-        <p class="subtitle">Streamline your SEO workflow with our intelligent submission engine.</p>
-
-        <div class="iframe-container">
-            <div class="loading-spinner" id="spinner">
-                <div class="spinner-icon"></div>
-                <p>Connecting to Secure Server...</p>
-            </div>
-            <!-- Embedded Streamlit App with branding hidden -->
-            <iframe
-                src="https://bookmarking-automation-snz4o5v6yykdgsclt5fxcw.streamlit.app/?embed=true&embed_options=show_toolbar:false,show_colored_line:false,show_footer:false"
-                frameborder="0" onload="document.getElementById('spinner').style.display='none';"
-                allow="clipboard-read; clipboard-write" style="border: none; overflow: hidden;"></iframe>
+        <h1>Transform Your SEO Workflow</h1>
+        <p class="subtitle">Powerful, free tools to create, optimize, and rank your content faster.</p>
+        <div style="margin-top: 2rem;">
+            <a href="/tools/" class="btn-primary"
+                style="background: var(--gradient-primary); color: white; padding: 1rem 2rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.1rem; box-shadow: var(--shadow-glow);">
+                Explore All Tools
+            </a>
         </div>
     </div>
 </section>
@@ -65,41 +59,6 @@ include 'includes/header.php';
     </div>
 </section>
 
-<script>
-    // Additional script to hide Streamlit footer
-    window.addEventListener('load', function () {
-        const iframe = document.querySelector('iframe[src*="streamlit"]');
-        if (iframe) {
-            // Wait for iframe to fully load
-            iframe.onload = function () {
-                try {
-                    // Hide the spinner
-                    const spinner = document.getElementById('spinner');
-                    if (spinner) spinner.style.display = 'none';
 
-                    // Attempt to inject CSS to hide Streamlit footer
-                    // Note: This may not work due to CORS restrictions
-                    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                    const style = iframeDoc.createElement('style');
-                    style.textContent = `
-                    footer {
-                        display: none !important;
-                    }
-                    .css-1v0mbdj, .css-vurnku {
-                        display: none !important;
-                    }
-                    [data-testid="stDecoration"] {
-                        display: none !important;
-                    }
-                `;
-                    iframeDoc.head.appendChild(style);
-                } catch (e) {
-                    // CORS restriction - iframe from different origin
-                    console.log('Cannot access iframe due to CORS policy');
-                }
-            };
-        }
-    });
-</script>
 
 <?php include 'includes/footer.php'; ?>
